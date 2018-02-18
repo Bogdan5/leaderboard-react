@@ -54,7 +54,7 @@ class App extends Component {
         </div>
         <div onClick={this.onalltime}>Alltime</div>
         {
-          this.state.data.map((item)=>(<Cards key={item.username}
+          this.state.data.map((item)=>(<Cards key={item.username} name={item.username}
             urlImg={item.img} alltime={item.alltime}
             recent={item.recent}/>))
         }

@@ -2,4 +2,21 @@
   width:70%;
   margin: 20px auto;
   border-radius:5px;
+  background-color: rgb(175, 186, 193);
+  &:nth-child(2){
+    background-color: rgba(122, 76, 19, 0.05);
+  }
+}
+
+.card-container{
+  height: 30px;
+  & div{
+    boder:1px solid rgb(57, 54, 60);
+    display: inline-block;
+    vertical-align: top;
+  }
+  &:first-child{
+    width:10%;
+  }
+  
 }
