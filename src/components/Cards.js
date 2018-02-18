@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
+import './App.css'
 
 class Cards extends Component {
-  // constructor (props){
-  //   super(props);
-  //   this.state = {recentOn:true};
-  // }
+
 
   render() {
     return (
-      // addCards(this.state.recentOn)
-      <div className="header">
+      <div className="card-container">
         <div>{this.props.key}</div>
         <div>{this.props.urlImg}</div>
         <div>{this.props.alltime}</div>

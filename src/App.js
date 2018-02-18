@@ -9,15 +9,8 @@ class App extends Component {
     console.log("construct");
     this.state = {data:[{"username":"sjames1958gm","img":"https://avatars1.githubusercontent.com/u/4639625?v=4","alltime":8597,"recent":116,"lastUpdate":"2018-02-03T18:14:36.182Z"}], isRecent:true};
   }
-  // let topRecent = [];
-  // let topAlltime = [];
-  // let x = false;
-  // this.divResult = document.createElement("div");
-  //
-  // this.divResult.id = 'table';
-  // this.divResult.appendChild(<Header/>)
 
-getData = () => {
+  getData = () => {
     fetch(this.state.isRecent?'https://fcctop100.herokuapp.com/api/fccusers/top/recent':
       'https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
       .then(
@@ -28,39 +21,38 @@ getData = () => {
           console.log("stuff");
           response.json().then((dat)=>{
             console.log(dat);
+            dat.sort((a,b)=>this.state.isRecent?b.recent-a.recent:b.alltime-a.alltime);
             this.setState({data:dat});
           });
         }
       )
       .catch((error)=>{console.log("Error:"+error)})
   };
-componentDidMount(){
-  console.log("mount");
-  this.getData(this.state.isRecent);
-  console.log('data is -'+this.state.data);
-  // this.setState({data:this.getData(true)});
-}
+  componentDidMount(){
+    this.getData();
+  }
 
-  // let addCards = (this.state.recentOn) => {
-  //   if (x = getData(this.state.recentOn)){
-  //     divResult.appendChild(<Header/>);
-  //     topRecent = x.sort((a,b)=>a.recent-b.recent);
-  //     topRecent.forEach((elem)=>{
-  //       divResult.appendChild(<Card name={elem.username};
-  //       recentScore={elem.recent} alltimeScore={elem.alltime} image={elem.img}
-  //     />)});
-  //     let y = this.state.recentOn;
-  //     this.setState({recentOn: !y})
-  //     return divResult;
-  //   }
-  // }
-
-
+  onrecent=()=>{
+    if (!this.state.isRecent){
+      this.setState({isRecent:true});
+      this.getData();
+    }
+  }
+  onalltime=()=>{
+    if (this.state.isRecent){
+      this.setState({isRecent:false});
+      this.getData();
+    }
+  }
 
   render() {
     return (
       // addCards(this.state.recentOn)
       <div className="wrapper">
+        <div onClick={this.onrecent}>
+          Recent
+        </div>
+        <div onClick={this.onalltime}>Alltime</div>
         {
           this.state.data.map((item)=>(<Cards key={item.username}
             urlImg={item.img} alltime={item.alltime}
