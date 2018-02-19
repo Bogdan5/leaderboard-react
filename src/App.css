@@ -1,22 +1,73 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: rgb(81, 177, 153);
+  font-family: Tahoma, sans-serif;
+  font-size: 18px;
+  color:rgb(6, 9, 18);
+}
+
+/* the table that contains the information */
 .wrapper{
-  width:70%;
+  width:80%;
   margin: 20px auto;
   border-radius:5px;
   background-color: rgb(175, 186, 193);
-  &:nth-child(2){
-    background-color: rgba(122, 76, 19, 0.05);
-  }
+
+}
+/* alternates background colors in the table */
+div.wrapper>div:nth-child(even){
+  background-color: white;
+}
+/* the title header of the table */
+.wrapper>div:first-child{
+  text-align: center;
+  height:55px;
+  background-color: rgb(40, 144, 118);
+  line-height: 55px;
+  border-radius: 5px 5px 0 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+/* height of all lines */
+div.card-container, .columns{
+  height: 50px;
 }
 
-.card-container{
-  height: 30px;
-  & div{
-    boder:1px solid rgb(57, 54, 60);
-    display: inline-block;
-    vertical-align: top;
-  }
-  &:first-child{
-    width:10%;
-  }
-  
+div.card-container>div, .columns>div{
+  display: inline-block;
+  vertical-align: middle;
+  padding-top:10px;
+}
+/* dimensions of the number column */
+div.card-container>div:first-child, .columns>div:first-child{
+  width:10%;
+  padding-left: 15px;
+}
+/* dimension of the name column */
+div.card-container>div:nth-child(2), .columns>div:nth-child(2){
+  width:30%;
+}
+/* dimensions last two columns */
+div.card-container>div:last-child, div.card-container>div:nth-child(3),
+ .columns>div:last-child, .columns>div:nth-child(3){
+  width:30%;
+}
+/* ensures the name cells are horizontally aligned and centered */
+div.card-container>div:nth-child(2)>*{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.columns>div:last-child, .columns>div:nth-child(3){
+  cursor:pointer;
+}
+/* styles the indiviual logo */
+img{
+  width:30px;
+  border:2px solid rgb(40, 144, 118);
+  border-radius:4px;
 }
